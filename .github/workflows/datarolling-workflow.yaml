@@ -22,5 +22,5 @@ env:
     steps:
       - uses: ./.github/workflows/dataroll-workflow-reusable.yaml
         with:
-          username: ${{ inputs.username }}
-          token: ${{ secrets.envPAT }}
+          db_schema_name: fcra-v2-db
+          db_table_name: recent-app
