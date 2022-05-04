@@ -1,4 +1,4 @@
-name : datarolling-workflow
+name : datarolling-simple-workflow
 
 on:
   workflow_dispatch:
