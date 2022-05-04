@@ -17,10 +17,9 @@ env:
   DR_BATCH_DB_USERNAME: $DR_BATCH_DB_USERNAME
   DR_BATCH_DB_PASSWORD: $DR_BATCH_DB_PASSWORD
   
-  jobs:
+jobs:
     fcra-v2-db-job:
-    steps:
-      - uses: ./.github/workflows/dataroll-workflow-reusable.yaml
+        uses: ./.github/workflows/dataroll-workflow-reusable.yaml
         with:
-          db_schema_name: fcra-v2-db
-          db_table_name: recent-app
+            db_schema: fcra-v2-db
+            db_table_name: recent-app
