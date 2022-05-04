@@ -1,0 +1,17 @@
+on:
+   workflow_call:
+      inputs:
+         db_schema:
+            required: true
+            type: string
+        db_table_name:
+            required: true
+            type: string
+
+    
+jobs:
+  data_rolling_job:
+     name: Rolling data  ${{ inputs.db_schema }}
+     runs-on: ubuntu-latest  
+       steps:
+           run: echo "hello "
