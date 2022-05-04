@@ -1,0 +1,54 @@
+name : datarolling-workflow
+
+on:
+  workflow_dispatch:
+
+env:
+  DR_YEAR_STATE: 20210521
+  DR_VAULT_ADDRESS: https://san-vault.idanalytics.com
+  DR_VAULT_TRANSIT_ENABLED: "true"
+  DR_VAULT_ROLE_ID: $DR_VAULT_ROLE_ID
+  DR_VAULT_SECRET_ID: $DR_VAULT_SECRET_ID
+  DR_DB_USERNAME_SRC: $DR_DB_USERNAME_SRC
+  DR_DB_PASSWD_SRC: $DR_DB_PASSWD_SRC
+  DR_DB_USERNAME_DEST: $DR_DB_USERNAME_DEST
+  DR_DB_PASSWD_DEST: $DR_DB_PASSWD_DEST
+  DR_BATCH_DB_URL: $DR_BATCH_DB_URL
+  DR_BATCH_DB_USERNAME: $DR_BATCH_DB_USERNAME
+  DR_BATCH_DB_PASSWORD: $DR_BATCH_DB_PASSWORD
+  
+  
+jobs:
+   #--- job1 
+   oltp_roll_gate:
+      runs-on:  ubuntu-latest           
+      steps:
+        echo "Starting OLTP Data Encryption Roll"
+      # only: refs : master    
+   
+    fcra_v2_db.recent_applications:
+       needs: oltp_roll_gate
+       runs-on: ubuntu-latest
+       steps:
+         echo "hi ..."
+        env: 
+           DR_DB_HOST_SRC: san-prod-dboltpwrite-6.idanalytics.com
+           DR_DB_HOST_DEST: san-prod-dboltpwrite-6.idanalytics.com
+           DR_DB_SCHEMA_NAME: fcra_v2_db
+           DR_DB_TABLE_NAME: recent_applications
+  
+    fcra_volatile_v2_db.recent_applications:
+       needs: oltp_roll_gate
+       runs-on: ubuntu-latest
+       steps:
+         echo "hi 2..."
+        env: 
+           DR_DB_HOST_SRC: san-prod-dboltpwrite-6.idanalytics.com
+           DR_DB_HOST_DEST: san-prod-dboltpwrite-6.idanalytics.com
+           DR_DB_SCHEMA_NAME: fcra_volatile_v2_db
+           DR_DB_TABLE_NAME: recent_applications
+           
+
+           
+  
+    
