@@ -38,6 +38,7 @@ jobs:
            DR_DB_TABLE_NAME: recent_applications
   
    fcra_volatile_v2_db-recent_applications:
+       needs: oltp_roll_gate
        runs-on: ubuntu-latest
        steps:
        - id: step1
@@ -47,6 +48,7 @@ jobs:
            DR_DB_HOST_DEST: san-prod-dboltpwrite-6.idanalytics.com
            DR_DB_SCHEMA_NAME: fcra_volatile_v2_db
            DR_DB_TABLE_NAME: recent_applications
+           
            
 
            
