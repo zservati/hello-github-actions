@@ -19,7 +19,7 @@ env:
   
 jobs:
     fcra-v2-db-job:
-        uses: ./.github/workflows/dataroll-workflow-reusable.yaml
+        uses: ./.github/workflows/dataroll-workflow-reusable.yml
         with:
             db_schema: fcra-v2-db
             db_table_name: recent-app
