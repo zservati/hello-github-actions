@@ -19,30 +19,30 @@ env:
   
   
 jobs:
-   #--- job1 
    oltp_roll_gate:
       runs-on:  ubuntu-latest           
       steps:
-        echo "Starting OLTP Data Encryption Roll"
-      # only: refs : master    
+       - id: step1
+         run: echo "hiii1 "
    
-    fcra_v2_db.recent_applications:
+   fcra_v2_db-recent_applications:
        needs: oltp_roll_gate
        runs-on: ubuntu-latest
        steps:
-         echo "hi ..."
-        env: 
+       - id: step1
+         run: echo "hi2222.."
+       env: 
            DR_DB_HOST_SRC: san-prod-dboltpwrite-6.idanalytics.com
            DR_DB_HOST_DEST: san-prod-dboltpwrite-6.idanalytics.com
            DR_DB_SCHEMA_NAME: fcra_v2_db
            DR_DB_TABLE_NAME: recent_applications
   
-    fcra_volatile_v2_db.recent_applications:
-       needs: oltp_roll_gate
+   fcra_volatile_v2_db-recent_applications:
        runs-on: ubuntu-latest
        steps:
-         echo "hi 2..."
-        env: 
+       - id: step1
+         run: echo "hi2222.."
+       env: 
            DR_DB_HOST_SRC: san-prod-dboltpwrite-6.idanalytics.com
            DR_DB_HOST_DEST: san-prod-dboltpwrite-6.idanalytics.com
            DR_DB_SCHEMA_NAME: fcra_volatile_v2_db
