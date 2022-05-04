@@ -1,0 +1,26 @@
+name : datarolling-workflow
+
+on:
+  workflow_dispatch:
+
+env:
+  DR_YEAR_STATE: 20210521
+  DR_VAULT_ADDRESS: https://san-vault.idanalytics.com
+  DR_VAULT_TRANSIT_ENABLED: "true"
+  DR_VAULT_ROLE_ID: $DR_VAULT_ROLE_ID
+  DR_VAULT_SECRET_ID: $DR_VAULT_SECRET_ID
+  DR_DB_USERNAME_SRC: $DR_DB_USERNAME_SRC
+  DR_DB_PASSWD_SRC: $DR_DB_PASSWD_SRC
+  DR_DB_USERNAME_DEST: $DR_DB_USERNAME_DEST
+  DR_DB_PASSWD_DEST: $DR_DB_PASSWD_DEST
+  DR_BATCH_DB_URL: $DR_BATCH_DB_URL
+  DR_BATCH_DB_USERNAME: $DR_BATCH_DB_USERNAME
+  DR_BATCH_DB_PASSWORD: $DR_BATCH_DB_PASSWORD
+  
+  jobs:
+    fcra-v2-db-job:
+    steps:
+      - uses: ./.github/workflows/dataroll-workflow-reusable.yaml
+        with:
+          username: ${{ inputs.username }}
+          token: ${{ secrets.envPAT }}
