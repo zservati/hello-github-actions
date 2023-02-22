@@ -1,4 +1,14 @@
-name : datarolling-workflow
-
+name : compare-file-workflow
 on:
   workflow_dispatch:
+jobs:
+  compare-file-workflow:
+
+    name: compare file workflow
+    runs-on: ubuntu-latest
+
+    steps:
+        run: ./.github/script/comparefile.sh
+        env:
+          FILE: ".github/workflows/welcome.yml"
+          SEARCH: "name:"
