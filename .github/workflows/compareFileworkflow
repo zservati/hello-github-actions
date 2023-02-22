@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        run: ./.github/script/comparefile.sh
+        run: ./.github/script/compare-file.sh
         env:
-          FILE: ".github/workflows/welcome.yml"
-          SEARCH: "name:"
+          FILE: ".github/workflows"
+         
