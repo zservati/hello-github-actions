@@ -1,0 +1,4 @@
+name : datarolling-workflow
+
+on:
+  workflow_dispatch:
